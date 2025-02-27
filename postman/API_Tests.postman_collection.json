@@ -1,0 +1,75 @@
+{
+  "info": {
+    "name": "Vommy Chat API Tests",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Auth",
+      "item": [
+        {
+          "name": "Register",
+          "request": {
+            "method": "POST",
+            "url": "http://localhost:5000/api/register",
+            "body": {
+              "mode": "raw",
+              "raw": "{\"username\":\"test\",\"email\":\"test@example.com\",\"password\":\"password123\",\"referralCode\":\"ABC123\"}",
+              "options": { "raw": { "language": "json" } }
+            }
+          }
+        },
+        {
+          "name": "Login",
+          "request": {
+            "method": "POST",
+            "url": "http://localhost:5000/api/login",
+            "body": {
+              "mode": "raw",
+              "raw": "{\"email\":\"test@example.com\",\"password\":\"password123\"}",
+              "options": { "raw": { "language": "json" } }
+            }
+          }
+        },
+        {
+          "name": "Rate Limit Test",
+          "request": {
+            "method": "POST",
+            "url": "http://localhost:5000/api/login",
+            "body": {
+              "mode": "raw",
+              "raw": "{\"email\":\"test@example.com\",\"password\":\"wrong\"}"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Referrals",
+      "item": [
+        {
+          "name": "Get Referrals",
+          "request": {
+            "method": "GET",
+            "url": "http://localhost:5000/api/referrals/my-referrals",
+            "auth": {
+              "type": "bearer",
+              "bearer": "{{token}}"
+            }
+          }
+        },
+        {
+          "name": "Get Stats",
+          "request": {
+            "method": "GET",
+            "url": "http://localhost:5000/api/referrals/stats",
+            "auth": {
+              "type": "bearer",
+              "bearer": "{{token}}"
+            }
+          }
+        }
+      ]
+    }
+  ]
+}
